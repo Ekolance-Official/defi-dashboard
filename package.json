@@ -1,0 +1,26 @@
+{
+  "name": "defi-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ekolance-Official/defi-dashboard.git"
+  },
+  "keywords": [
+    "Ekolance",
+    "Defi",
+    "Uniswap",
+    "Erc20"
+  ],
+  "author": "Samuel Anthony",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ekolance-Official/defi-dashboard/issues"
+  },
+  "homepage": "https://github.com/Ekolance-Official/defi-dashboard#readme",
+  "dependencies": {}
+}
