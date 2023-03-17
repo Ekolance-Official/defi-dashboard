@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import Select from "react-select";
-import { useGetTokensQuery } from "../../store/slices/api";
+import { useGetTokensQuery } from "../../store/slices/tokenSlice";
 import { tokens } from "../../pages/LandingPage";
 
 function Buy() {

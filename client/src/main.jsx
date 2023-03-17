@@ -7,6 +7,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Trade from "./pages/Trade";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import Analytics from "./pages/Analytics";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/trade",
     element: <Trade />,
+  },
+  {
+    path: "/analytics",
+    element: <Analytics />,
   },
 ]);
 

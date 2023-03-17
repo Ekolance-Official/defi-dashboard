@@ -10,11 +10,13 @@ import {
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import dexSlice from "./slices/dexSlice";
-import { tokensSlice } from "./slices/api";
+import { tokensSlice } from "./slices/tokenSlice";
+import { marketSlice } from "./slices/marketSlice";
 
 const reducers = combineReducers({
   dex: dexSlice,
   [tokensSlice.reducerPath]: tokensSlice.reducer,
+  [marketSlice.reducerPath]: marketSlice.reducer,
 });
 
 const persistConfig = {
@@ -32,7 +34,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat([tokensSlice.middleware]);
+    }).concat([tokensSlice.middleware, marketSlice.middleware]);
   },
 });
 
