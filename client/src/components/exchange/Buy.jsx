@@ -1,13 +1,51 @@
-import React from "react";
-import { Box, Button, Flex, Input, Select, Text } from "@chakra-ui/react";
+import React, { useState } from "react";
+import {
+  Box,
+  Button,
+  Flex,
+  Grid,
+  GridItem,
+  Image,
+  Input,
+  Select as ChakraSelect,
+  Text,
+} from "@chakra-ui/react";
+import Select from "react-select";
+import { useGetTokensQuery } from "../../store/slices/api";
+import { tokens } from "../../pages/LandingPage";
 
 function Buy() {
+  const [selectedToken, setSelectedToken] = useState(null);
+  const [to_token, setToToken] = useState(null);
+  const { data } = useGetTokensQuery();
+  const [amountTo, setAmountTo] = useState(0);
+
   return (
     <Flex w="full" direction={"column"}>
       <Box w="full">
         <Text color="defi.light.second">Coin</Text>
-        <Flex h="50px" bg="red" w="full">
-          Box
+        <Flex h="50px" w="full">
+          <Grid
+            alignItems={"center"}
+            gridTemplateColumns={selectedToken ? "15% 85%" : "0% 100%"}
+            w="full"
+          >
+            <GridItem mr="1rem">
+              <Image
+                display={selectedToken ? "inline-block" : "none"}
+                height={"20px"}
+                width="20px"
+                src={selectedToken && selectedToken.logoURI}
+              />
+            </GridItem>
+            <GridItem>
+              <Select
+                className="dropdown-select"
+                options={tokens}
+                onChange={(opt) => setSelectedToken(opt)}
+              />
+            </GridItem>
+          </Grid>
         </Flex>
       </Box>
 
@@ -19,14 +57,30 @@ function Buy() {
           alignItems={"center"}
           justifyContent="space-between"
           bg="defi.dark.second"
-          py="2px"
         >
-          <Input color="#fff" w="100px" h="full" outline="unset" />
+          <Input
+            color="#fff"
+            w="full"
+            h="full"
+            borderRadius={"unset"}
+            outline="unset"
+            onChange={(e) => setAmoun(e.target.value)}
+            border="unset"
+            boxShadow={"unset"}
+            _focus={{
+              border: "none",
+              boxShadow: "unset",
+            }}
+          />
           <Box>
-            <Select placeholder="Select option">
-              <option value="option1">USD</option>
-              <option value="option2">USDC</option>
-            </Select>
+            <ChakraSelect
+              onChange={(e) => setSelectedToken(e.target.value)}
+              bg=" rgb(194, 222, 209)"
+              borderRadius={"unset"}
+              border="unset"
+            >
+              <option value="usdc">USDC</option>
+            </ChakraSelect>
           </Box>
         </Flex>
       </Box>
@@ -44,7 +98,7 @@ function Buy() {
           mt="10px"
           borderRadius={"10px"}
         >
-          Buy Ethereum
+          Buy
         </Button>
       </Box>
     </Flex>

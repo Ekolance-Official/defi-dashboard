@@ -5,6 +5,8 @@ import LandingPage from "./pages/LandingPage";
 import { theme } from "./utils/theme";
 import { ChakraProvider } from "@chakra-ui/react";
 import Trade from "./pages/Trade";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -12,13 +14,15 @@ const router = createBrowserRouter([
     element: <LandingPage />,
   },
   {
-    path: '/trade',
-    element: <Trade />
-  }
+    path: "/trade",
+    element: <Trade />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ChakraProvider theme={theme}>
-    <RouterProvider router={router} />
-  </ChakraProvider>
+  <Provider {...{ store }}>
+    <ChakraProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ChakraProvider>
+  </Provider>
 );

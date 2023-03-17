@@ -1,0 +1,16 @@
+#portfolio-chart {
+  width: 100%;
+  height: 100%;
+  min-height: 50vh;
+}
+
+.dropdown-select {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  #portfolio-chart {
+    /* display: none; */
+  }
+}
