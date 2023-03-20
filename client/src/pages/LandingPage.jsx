@@ -137,7 +137,7 @@ function LandingPage() {
                 <canvas id="portfolio-chart"></canvas>
               </Box>
             </GridItem>
-            <GridItem>
+            <GridItem px={{ base: "1rem", lg: "unset" }}>
               <Flex
                 direction={"column"}
                 justifyContent="center"
@@ -147,6 +147,7 @@ function LandingPage() {
                 h={{ lg: "150px" }}
                 borderRadius="10px"
                 fontWeight={"bold"}
+                py={{ base: "1rem", lg: "unset" }}
               >
                 <Text>Total Balance</Text>
                 <Text fontSize={{ lg: "30px" }} color="defi.light.first">
@@ -172,13 +173,13 @@ function LandingPage() {
                   </TabList>
                   <TabPanels>
                     <TabPanel>
-                        <Buy />
+                      <Buy />
                     </TabPanel>
                     <TabPanel>
-                        <Sell />
+                      <Sell />
                     </TabPanel>
                     <TabPanel>
-                        <Exchange />
+                      <Exchange />
                     </TabPanel>
                   </TabPanels>
                 </Tabs>

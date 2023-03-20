@@ -11,6 +11,6 @@
 
 @media screen and (max-width: 600px) {
   #portfolio-chart {
-    /* display: none; */
+    min-height: 20vh;
   }
 }

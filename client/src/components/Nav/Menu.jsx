@@ -23,7 +23,7 @@ function Menu() {
               fontSize={{ lg: "30px" }}
               fontWeight={{ lg: "bold" }}
             >
-              Overview
+              Dashboard
             </Text>
           </Flex>
         </InternalLink>

@@ -14,7 +14,7 @@ import {
   DrawerBody,
 } from "@chakra-ui/react";
 import { VscMenu } from "react-icons/vsc";
-import { NavLink } from "../../utils/Links";
+import { InternalLink, NavLink } from "../../utils/Links";
 
 function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -24,11 +24,11 @@ function Navbar() {
       name: "Trade",
       path: "/trade",
     },
-    // {
-    //   name: "Team",
-    //   path: "/#team",
-    //   id: "team",
-    // },
+    {
+      name: "Analytics",
+      path: "/analytics",
+      // id: "team",
+    },
   ];
 
   return (
@@ -61,13 +61,15 @@ function Navbar() {
         alignItems={"center"}
       >
         <GridItem pl={{ lg: "20px", base: "unset" }}>
-          <Text
-            color="defi.light.second"
-            fontSize={{ lg: "35px" }}
-            fontWeight="bold"
-          >
-            DApp
-          </Text>
+          <InternalLink to="/">
+            <Text
+              color="defi.light.second"
+              fontSize={{ lg: "35px" }}
+              fontWeight="bold"
+            >
+              DApp
+            </Text>
+          </InternalLink>
         </GridItem>
         <Spacer display={{ lg: "none" }} />
         <GridItem pr={{ lg: "20px", base: "unset" }}>
