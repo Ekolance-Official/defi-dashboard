@@ -74,6 +74,7 @@ function Sell() {
           />
           <Box>
             <ChakraSelect
+              w="100px"
               onChange={(e) => setSelectedToken(e.target.value)}
               bg=" rgb(194, 222, 209)"
               borderRadius={"unset"}

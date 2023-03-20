@@ -64,7 +64,7 @@ function Navbar() {
           <InternalLink to="/">
             <Text
               color="defi.light.second"
-              fontSize={{ lg: "35px" }}
+              fontSize={{ lg: "25px" }}
               fontWeight="bold"
             >
               DApp

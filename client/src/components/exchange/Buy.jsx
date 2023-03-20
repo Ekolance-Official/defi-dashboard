@@ -64,7 +64,6 @@ function Buy() {
             h="full"
             borderRadius={"unset"}
             outline="unset"
-            onChange={(e) => setAmoun(e.target.value)}
             border="unset"
             boxShadow={"unset"}
             _focus={{
@@ -74,6 +73,7 @@ function Buy() {
           />
           <Box>
             <ChakraSelect
+              w="100px"
               onChange={(e) => setSelectedToken(e.target.value)}
               bg=" rgb(194, 222, 209)"
               borderRadius={"unset"}

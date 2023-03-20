@@ -8,6 +8,7 @@ import Menu from "../components/Nav/Menu";
 import Navbar from "../components/Nav/Navbar";
 import BodyWrapper from "../utils/BodyWrapper";
 import Chart from "chart.js/auto";
+import { AiFillWallet, CiMoneyBill, BsBarChart } from "react-icons/all";
 import "./style.css";
 
 export const tokens = [
@@ -33,32 +34,67 @@ export const tokens = [
 
 function LandingPage() {
   const stats = [
-    { title: "Total Assets ", value: "$10,00" },
-    { title: "Total Deposit ", value: "$2,445" },
-    { title: "APY ", value: "+8.6%" },
-  ];
-
-  const data = [
-    { year: 2010, count: 10000 },
-    { year: 2011, count: 20000 },
-    { year: 2012, count: 30000 },
-    { year: 2013, count: 40000 },
-    { year: 2014, count: 50000 },
-    { year: 2015, count: 60000 },
-    { year: 2016, count: 70000 },
+    {
+      title: "Total Assets ",
+      value: "$10,00",
+      icon: <CiMoneyBill color="#BFC2C4" size={30} />,
+    },
+    {
+      title: "Total Deposit ",
+      value: "$2,445",
+      icon: <AiFillWallet color="#BFC2C4" size={30} />,
+    },
+    {
+      title: "APY ",
+      value: "+8.6%",
+      icon: <BsBarChart color="#BFC2C4" size={30} />,
+    },
   ];
 
   useEffect(() => {
+    const data = [];
+
+    for (let i = 1; i <= 20; i++) {
+      const day = i < 10 ? "0" + i : i;
+      const hour = Math.floor(Math.random() * 24);
+      const minute = Math.floor(Math.random() * 60);
+      const second = Math.floor(Math.random() * 60);
+      const value = Math.floor(Math.random() * 40000) + 10000;
+      const date = `${hour}:${minute}:${second}`;
+      data.push({ x: date, y: value });
+    }
+
     new Chart(document.getElementById("portfolio-chart"), {
       type: "line",
       data: {
-        labels: data.map((row) => row.year),
+        labels: [],
         datasets: [
           {
             label: "Portfolio performance",
-            data: data.map((row) => row.count),
+            data,
+            tension: 0.1,
+            borderColor: "#8ADD21",
           },
         ],
+      },
+      options: {
+        scales: {
+          y: {
+            ticks: {
+              callback: function (value, index, values) {
+                return "$" + value.toLocaleString();
+              },
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+            labels: {
+              color: "rgb(255, 99, 132)",
+            },
+          },
+        },
       },
     });
   }, []);
@@ -78,7 +114,7 @@ function LandingPage() {
             w="full"
             h="full"
             mt={{ lg: "30px" }}
-            gridTemplateColumns={{ lg: "20% 51% 27%" }}
+            gridTemplateColumns={{ lg: "18% 55% 27%" }}
           >
             <GridItem
               pl={{ lg: "20px" }}
@@ -94,44 +130,60 @@ function LandingPage() {
                 gap={"1rem"}
                 px={{ base: "1rem", lg: "unset" }}
               >
-                {stats.map(({ title, value }, key) => (
+                {stats.map(({ title, value, icon }, key) => (
                   <GridItem
+                    key={key}
                     h="full"
                     borderRadius="10px"
-                    bg="defi.dark.second"
                     color={"defi.light.second"}
-                    _hover={{
-                      bg: "app.accent.100",
-                      color: "defi.dark.first",
-                    }}
                     py={{ base: "10px", lg: "unset" }}
+                    position="relative"
                   >
-                    <Flex
-                      w="full"
-                      h="full"
-                      alignItems={"center"}
-                      justifyContent="center"
-                      direction={"column"}
-                    >
-                      <Text
-                        fontWeight={"bold"}
-                        fontSize={{ lg: "35px", base: "25px" }}
+                    <Flex alignItems={"center"} direction="column">
+                      <Flex
+                        alignItems={"center"}
+                        borderRadius="50%"
+                        p="1rem"
+                        mb="-1rem"
+                        zIndex={"1"}
+                        bg="defi.dark.second"
+                        overflow="hidden"
                       >
-                        {value}
-                      </Text>
-                      <Text mt="7px" fontSize={{ lg: "14px", base: "10px" }}>
-                        {title}
-                      </Text>
+                        {icon}
+                      </Flex>
+                      <Flex
+                        w="full"
+                        h="100px"
+                        alignItems={"center"}
+                        justifyContent="center"
+                        direction={"column"}
+                        bg="defi.dark.second"
+                        borderRadius={"10px"}
+                        _hover={{
+                          bg: "app.accent.100",
+                          color: "defi.dark.first",
+                        }}
+                      >
+                        <Text
+                          fontWeight={"bold"}
+                          fontSize={{ lg: "25px", base: "25px" }}
+                        >
+                          {value}
+                        </Text>
+                        <Text mt="7px" fontSize={{ lg: "14px", base: "10px" }}>
+                          {title}
+                        </Text>
+                      </Flex>
                     </Flex>
                   </GridItem>
                 ))}
               </Grid>
 
               <Box
-                mt="20px"
+                mt="50px"
                 mb="5vh"
                 mx={{ base: "1rem", lg: "unset" }}
-                bg="app.dark.100"
+                bg="app.dark.second"
                 borderRadius={"10px"}
               >
                 <canvas id="portfolio-chart"></canvas>
@@ -149,7 +201,9 @@ function LandingPage() {
                 fontWeight={"bold"}
                 py={{ base: "1rem", lg: "unset" }}
               >
-                <Text>Total Balance</Text>
+                <Box></Box>
+
+                <Text>Wallet Balance</Text>
                 <Text fontSize={{ lg: "30px" }} color="defi.light.first">
                   $15,000
                 </Text>
@@ -160,10 +214,7 @@ function LandingPage() {
                 bg="defi.dark.second"
                 px="10px"
                 borderRadius={"10px"}
-                display={{
-                  base: "none",
-                  lg: "unset",
-                }}
+                pt={{ base: "1rem", lg: "unset" }}
               >
                 <Tabs isFitted w="full" variant="soft-rounded" mt="10px">
                   <TabList mb="1em" px="10px">

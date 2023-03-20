@@ -20,12 +20,13 @@ function Trade() {
       <Navbar />
       <BodyWrapper>
         <Box
-          w="full"
+          w={{ lg: "45%", base: "full" }}
           overflow="hidden"
           h={{ lg: "100vh", base: "unset" }}
           minH="100vh"
           mt={{ base: "5.5rem", lg: "unset" }}
           px="10px"
+          mx={{ base: "unset", lg: "auto" }}
         >
           <Flex mt="20px" bg="defi.dark.second" px="10px" borderRadius={"10px"}>
             <Tabs isFitted w="full" variant="soft-rounded" mt="10px">
